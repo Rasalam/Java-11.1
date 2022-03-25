@@ -8,9 +8,9 @@ public class PosterManagerDefaultMaxLengthMovieListTest {
 
     // Максимальная длина ленты по умолчанию (10)
 
-    // Тестовые  данные
 
-    PosterManager manager = new PosterManager();
+    PosterManager manager = new PosterManager(10);
+    // Тестовые  данные
     MovieItem movie1 = new MovieItem(1, "genre1", "movieName1", "imagePosterURL1");
     MovieItem movie2 = new MovieItem(2, "genre2", "movieName2", "imagePosterURL2");
     MovieItem movie3 = new MovieItem(3, "genre4", "movieName3", "imagePosterURL3");
@@ -23,7 +23,6 @@ public class PosterManagerDefaultMaxLengthMovieListTest {
     MovieItem movie10 = new MovieItem(10, "genre3", "movieName10", "imagePosterURL10");
     MovieItem movie11 = new MovieItem(11, "genre3", "movieName11", "imagePosterURL11");
     MovieItem movie12 = new MovieItem(12, "genre6", "movieName12", "imagePosterURL12");
-
 
     @Test                                                   // 0 фильмов всего, 0 в ленте
     public void test_GetMovieList_MovieInList_0() {
@@ -39,7 +38,6 @@ public class PosterManagerDefaultMaxLengthMovieListTest {
         MovieItem[] actual = new MovieItem[]{movie12};
         assertArrayEquals(expected, actual);
     }
-
 
     @Test                                                   // 9 фильмов всего, 9 в ленте
     public void test_GetMovieList_MovieInList_9() {
@@ -76,7 +74,7 @@ public class PosterManagerDefaultMaxLengthMovieListTest {
         assertArrayEquals(expected, actual);
     }
 
-    @Test                                                   // 12 фильмов всего, 10 в ленте
+    @Test                                                   // 11 фильмов всего, 10 в ленте
     public void test_GetMovieList_MovieInList_12() {
         manager.addMovie(movie1);
         manager.addMovie(movie2);
@@ -89,10 +87,9 @@ public class PosterManagerDefaultMaxLengthMovieListTest {
         manager.addMovie(movie9);
         manager.addMovie(movie10);
         manager.addMovie(movie11);
-        manager.addMovie(movie12);
         MovieItem[] expected = manager.getMovieList();
-        MovieItem[] actual = new MovieItem[]{movie12, movie11, movie10, movie9, movie8, movie7, movie6,
-                movie5, movie4, movie3};
+        MovieItem[] actual = new MovieItem[]{movie11, movie10, movie9, movie8, movie7, movie6, movie5,
+                movie4, movie3, movie2};
         assertArrayEquals(expected, actual);
     }
 

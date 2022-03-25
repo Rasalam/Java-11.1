@@ -1,5 +1,6 @@
 package ru.netology;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -8,10 +9,9 @@ public class PosterManagerSelectedMaxLengthMovieListTest {
 
     // Максимальная длина ленты пользовательская
 
+    public PosterManager manager = new PosterManager();
+
     // Тестовые данные
-
-    PosterManager manager = new PosterManager();
-
     MovieItem movie1 = new MovieItem(1, "genre1", "movieName1", "imagePosterURL1");
     MovieItem movie2 = new MovieItem(2, "genre2", "movieName2", "imagePosterURL2");
     MovieItem movie3 = new MovieItem(3, "genre4", "movieName3", "imagePosterURL3");
@@ -25,7 +25,8 @@ public class PosterManagerSelectedMaxLengthMovieListTest {
     MovieItem movie11 = new MovieItem(11, "genre3", "movieName11", "imagePosterURL11");
     MovieItem movie12 = new MovieItem(12, "genre6", "movieName12", "imagePosterURL12");
 
-    private void prepareManager() {
+    @BeforeEach
+    public void prepareManager() {
         manager.addMovie(movie1);
         manager.addMovie(movie2);
         manager.addMovie(movie3);
@@ -40,52 +41,57 @@ public class PosterManagerSelectedMaxLengthMovieListTest {
         manager.addMovie(movie12);
     }
 
-    @Test                                                   // Длина ленты 0 элементов, 0 фильмов
-    public void test_GetMovieList_NoMovieInList() {
+    @Test                                                   // Длина ленты 0 элементов
+    public void test_GetMovieList_0_MovieInList() {
         manager.maxLengthMovieList = 0;
-        prepareManager();
         MovieItem[] expected = manager.getMovieList();
         MovieItem[] actual = new MovieItem[]{};
         assertArrayEquals(expected, actual);
     }
 
-    @Test                                                   // Длина ленты 1 элемент, 1 фильм
-    public void test_GetMovieList_OneMovieInList() {
+    @Test                                                   // Длина ленты 1 элемент
+    public void test_GetMovieList_1_MovieInList() {
         manager.maxLengthMovieList = 1;
-        prepareManager();
         MovieItem[] expected = manager.getMovieList();
         MovieItem[] actual = new MovieItem[]{movie12};
         assertArrayEquals(expected, actual);
     }
 
-    @Test                                                   // Длина ленты 11 элементов, 11 фильмов
-    public void test_GetMovieList_ElevenMovieInList() {
+    @Test                                                   // Длина ленты 2 элемента
+    public void test_GetMovieList_2_MovieInList() {
+        manager.maxLengthMovieList = 2;
+        MovieItem[] expected = manager.getMovieList();
+        MovieItem[] actual = new MovieItem[]{movie12, movie11};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test                                                   // Длина ленты 11 элементов
+    public void test_GetMovieList_11_MovieInList() {
         manager.maxLengthMovieList = 11;
-        prepareManager();
         MovieItem[] expected = manager.getMovieList();
         MovieItem[] actual = new MovieItem[]{movie12, movie11, movie10, movie9, movie8, movie7, movie6,
                 movie5, movie4, movie3, movie2};
         assertArrayEquals(expected, actual);
     }
 
-    @Test                                                   // Длина ленты 12 элементов, 12 фильмов
-    public void test_GetMovieList_TwelveMovieInList() {
+    @Test                                                   // Длина ленты 12 элементов
+    public void test_GetMovieList_12_MovieInList() {
         manager.maxLengthMovieList = 12;
-        prepareManager();
         MovieItem[] expected = manager.getMovieList();
         MovieItem[] actual = new MovieItem[]{movie12, movie11, movie10, movie9, movie8, movie7, movie6,
                 movie5, movie4, movie3, movie2, movie1};
         assertArrayEquals(expected, actual);
     }
 
-    @Test                                                   // Длина ленты 13 элементов, 12 фильмов
-    public void test_GetMovieList_ThirteenMovieInList() {
-        manager.maxLengthMovieList = 13;
-        prepareManager();
+    @Test                                                   // Длина ленты 12 элементов, 13 элементов в массиве
+
+    public void test_GetMovieList_12_13_MovieInList() {
+        manager.maxLengthMovieList = 12;
+        MovieItem movie13 = new MovieItem(13, "genre6", "movieName13", "imagePosterURL13");
+        manager.addMovie(movie13);
         MovieItem[] expected = manager.getMovieList();
-        MovieItem[] actual = new MovieItem[]{movie12, movie11, movie10, movie9, movie8, movie7, movie6,
-                movie5, movie4, movie3, movie2, movie1};
+        MovieItem[] actual = new MovieItem[]{movie13, movie12, movie11, movie10, movie9, movie8, movie7, movie6,
+                movie5, movie4, movie3, movie2};
         assertArrayEquals(expected, actual);
     }
-
 }

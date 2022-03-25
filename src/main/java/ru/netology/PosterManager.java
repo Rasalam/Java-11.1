@@ -1,12 +1,17 @@
 package ru.netology;
 
 public class PosterManager {
-    int maxLengthMovieList = 10;
+    int maxLengthMovieList;
 
-    public PosterManager() {
+    public PosterManager(int maxLengthMovieList) {
+        this.maxLengthMovieList = maxLengthMovieList;
     }
 
-    private MovieItem[] items = new MovieItem[0];
+    public PosterManager() {
+
+    }
+
+    public MovieItem[] items = new MovieItem[0];
 
     public void addMovie(MovieItem item) {
         int length = items.length + 1;
