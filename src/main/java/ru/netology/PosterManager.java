@@ -22,7 +22,7 @@ public class PosterManager {
         items = tmp;
     }
 
-    public MovieItem[] getMovieList() {
+    public MovieItem[] findLast() {
         int resultLength;
         if (items.length > maxLengthMovieList) {
             resultLength = maxLengthMovieList;
@@ -34,6 +34,11 @@ public class PosterManager {
         }
         return result;
     }
+
+    public MovieItem[] findAll () {
+        return items;
+    }
+
 
 }
 

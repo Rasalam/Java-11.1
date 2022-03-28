@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class PosterManagerSelectedMaxLengthMovieListTest {
+public class PosterManager_SelectedMaxLengthMovieListTest {
 
     // Максимальная длина ленты пользовательская
 
@@ -42,42 +42,42 @@ public class PosterManagerSelectedMaxLengthMovieListTest {
     }
 
     @Test                                                   // Длина ленты 0 элементов
-    public void test_GetMovieList_0_MovieInList() {
+    public void test_findLast_0_MovieInList() {
         manager.maxLengthMovieList = 0;
-        MovieItem[] expected = manager.getMovieList();
+        MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{};
         assertArrayEquals(expected, actual);
     }
 
     @Test                                                   // Длина ленты 1 элемент
-    public void test_GetMovieList_1_MovieInList() {
+    public void test_findLast_1_MovieInList() {
         manager.maxLengthMovieList = 1;
-        MovieItem[] expected = manager.getMovieList();
+        MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{movie12};
         assertArrayEquals(expected, actual);
     }
 
     @Test                                                   // Длина ленты 2 элемента
-    public void test_GetMovieList_2_MovieInList() {
+    public void test_findLast_2_MovieInList() {
         manager.maxLengthMovieList = 2;
-        MovieItem[] expected = manager.getMovieList();
+        MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{movie12, movie11};
         assertArrayEquals(expected, actual);
     }
 
     @Test                                                   // Длина ленты 11 элементов
-    public void test_GetMovieList_11_MovieInList() {
+    public void test_findLast_11_MovieInList() {
         manager.maxLengthMovieList = 11;
-        MovieItem[] expected = manager.getMovieList();
+        MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{movie12, movie11, movie10, movie9, movie8, movie7, movie6,
                 movie5, movie4, movie3, movie2};
         assertArrayEquals(expected, actual);
     }
 
     @Test                                                   // Длина ленты 12 элементов
-    public void test_GetMovieList_12_MovieInList() {
+    public void test_findLast_12_MovieInList() {
         manager.maxLengthMovieList = 12;
-        MovieItem[] expected = manager.getMovieList();
+        MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{movie12, movie11, movie10, movie9, movie8, movie7, movie6,
                 movie5, movie4, movie3, movie2, movie1};
         assertArrayEquals(expected, actual);
@@ -85,11 +85,11 @@ public class PosterManagerSelectedMaxLengthMovieListTest {
 
     @Test                                                   // Длина ленты 12 элементов, 13 элементов в массиве
 
-    public void test_GetMovieList_12_13_MovieInList() {
+    public void test_findLast_12_13_MovieInList() {
         manager.maxLengthMovieList = 12;
         MovieItem movie13 = new MovieItem(13, "genre6", "movieName13", "imagePosterURL13");
         manager.addMovie(movie13);
-        MovieItem[] expected = manager.getMovieList();
+        MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{movie13, movie12, movie11, movie10, movie9, movie8, movie7, movie6,
                 movie5, movie4, movie3, movie2};
         assertArrayEquals(expected, actual);

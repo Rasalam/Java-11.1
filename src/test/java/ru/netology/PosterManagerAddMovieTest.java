@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class PosterManagerDefaultAddMovieTest {
+public class PosterManagerAddMovieTest {
 
     public PosterManager manager = new PosterManager(10);
 
@@ -21,7 +21,7 @@ public class PosterManagerDefaultAddMovieTest {
     @Test
     public void AddMovie_EmptyManager_Test() {
         manager.addMovie(movie1);
-        MovieItem[] expected = manager.getMovieList();
+        MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{movie1};
         assertArrayEquals(expected, actual);
     }
@@ -30,7 +30,7 @@ public class PosterManagerDefaultAddMovieTest {
     public void AddMovie_NewMovie_Test() {
         prepareManager();
         manager.addMovie(movie3);
-        MovieItem[] expected = manager.getMovieList();
+        MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{movie3, movie2, movie1};
         assertArrayEquals(expected, actual);
     }
@@ -40,7 +40,7 @@ public class PosterManagerDefaultAddMovieTest {
         prepareManager();
         manager.addMovie(movie3);
         manager.addMovie(movie3);
-        MovieItem[] expected = manager.getMovieList();
+        MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{movie3, movie3, movie2, movie1};
         assertArrayEquals(expected, actual);
     }
