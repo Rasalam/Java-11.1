@@ -20,7 +20,7 @@ public class PosterManagerAddMovieTest {
     }
 
     @Test
-    public void AddMovieEmptyManagerTest() {
+    public void addMovieEmptyManagerTest() {
         manager.addMovie(movie1);
         MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{movie1};
@@ -28,7 +28,7 @@ public class PosterManagerAddMovieTest {
     }
 
     @Test
-    public void AddMovieNewMovieTest() {
+    public void addMovieNewMovieTest() {
         prepareManager();
         manager.addMovie(movie3);
         MovieItem[] expected = manager.findLast();
@@ -37,7 +37,7 @@ public class PosterManagerAddMovieTest {
     }
 
     @Test
-    public void AddMovieDoubleMovieTest() {
+    public void addMovieDoubleMovieTest() {
         prepareManager();
         manager.addMovie(movie3);
         manager.addMovie(movie3);
