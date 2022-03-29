@@ -1,15 +1,16 @@
-package ru.netology;
+package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
+import ru.netology.domain.MovieItem;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class PosterManager_DefaultMaxLengthMovieListTest {
+public class PosterManagerDefaultMaxLengthMovieListTest {
 
     // Максимальная длина ленты по умолчанию (10)
 
 
-    PosterManager manager = new PosterManager(10);
+    PosterManager manager = new PosterManager();
     // Тестовые  данные
     MovieItem movie1 = new MovieItem(1, "genre1", "movieName1", "imagePosterURL1");
     MovieItem movie2 = new MovieItem(2, "genre2", "movieName2", "imagePosterURL2");
@@ -25,14 +26,14 @@ public class PosterManager_DefaultMaxLengthMovieListTest {
     MovieItem movie12 = new MovieItem(12, "genre6", "movieName12", "imagePosterURL12");
 
     @Test                                                   // 0 фильмов всего, 0 в ленте
-    public void test_findLast_MovieInList_0() {
+    public void findLastMovieInList0Test() {
         MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{};
         assertArrayEquals(expected, actual);
     }
 
     @Test                                                   // 1 фильм всего, 1 в ленте
-    public void test_findLast_MovieInList_1() {
+    public void findLastMovieInList1Test() {
         manager.addMovie(movie12);
         MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{movie12};
@@ -40,7 +41,7 @@ public class PosterManager_DefaultMaxLengthMovieListTest {
     }
 
     @Test                                                   // 9 фильмов всего, 9 в ленте
-    public void test_findLast_MovieInList_9() {
+    public void findLastMovieInListTest() {
         manager.addMovie(movie4);
         manager.addMovie(movie5);
         manager.addMovie(movie6);
@@ -57,7 +58,7 @@ public class PosterManager_DefaultMaxLengthMovieListTest {
     }
 
     @Test                                                   // 10 фильмов всего, 10 в ленте
-    public void test_findLast_MovieInList_10() {
+    public void findLastMovieInList10Test() {
         manager.addMovie(movie3);
         manager.addMovie(movie4);
         manager.addMovie(movie5);
@@ -75,7 +76,7 @@ public class PosterManager_DefaultMaxLengthMovieListTest {
     }
 
     @Test                                                   // 11 фильмов всего, 10 в ленте
-    public void test_findLast_MovieInList_12() {
+    public void findLastMovieInList11Test() {
         manager.addMovie(movie1);
         manager.addMovie(movie2);
         manager.addMovie(movie3);

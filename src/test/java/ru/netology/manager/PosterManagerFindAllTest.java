@@ -1,6 +1,7 @@
-package ru.netology;
+package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
+import ru.netology.domain.MovieItem;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
@@ -20,14 +21,14 @@ public class PosterManagerFindAllTest {
     MovieItem movie10 = new MovieItem(10, "genre3", "movieName10", "imagePosterURL10");
 
     @Test                                                   // 0 фильмов всего
-    public void test_findAll_MovieInList_0() {
+    public void findAllMovieInList0Test() {
         MovieItem[] expected = manager.findAll();
         MovieItem[] actual = new MovieItem[]{};
         assertArrayEquals(expected, actual);
     }
 
     @Test                                                   // 1 фильмов всего
-    public void test_findAll_MovieInList_1() {
+    public void findAllMovieInList1Test() {
         manager.addMovie(movie1);
         MovieItem[] expected = manager.findAll();
         MovieItem[] actual = new MovieItem[]{movie1};
@@ -35,7 +36,7 @@ public class PosterManagerFindAllTest {
     }
 
     @Test                                                   // 9 фильмов всего
-    public void test_findAll_MovieInList_9() {
+    public void findAllMovieInList9Test() {
         manager.addMovie(movie1);
         manager.addMovie(movie2);
         manager.addMovie(movie3);
@@ -51,7 +52,7 @@ public class PosterManagerFindAllTest {
     }
 
     @Test                                                   // 10 фильмов всего
-    public void test_findAll_MovieInList_10() {
+    public void findAllMovieInList10Test() {
         manager.addMovie(movie1);
         manager.addMovie(movie2);
         manager.addMovie(movie3);
@@ -66,4 +67,5 @@ public class PosterManagerFindAllTest {
         MovieItem[] actual = new MovieItem[]{movie1, movie2, movie3, movie4, movie5, movie6, movie7, movie8, movie9, movie10};
         assertArrayEquals(expected, actual);
     }
+
 }

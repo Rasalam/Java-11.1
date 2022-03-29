@@ -1,12 +1,13 @@
-package ru.netology;
+package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
+import ru.netology.domain.MovieItem;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class PosterManagerAddMovieTest {
 
-    public PosterManager manager = new PosterManager(10);
+    PosterManager manager = new PosterManager();
 
     // Тестовые данные
     MovieItem movie1 = new MovieItem(1, "genre1", "movieName1", "imagePosterURL1");
@@ -19,7 +20,7 @@ public class PosterManagerAddMovieTest {
     }
 
     @Test
-    public void AddMovie_EmptyManager_Test() {
+    public void AddMovieEmptyManagerTest() {
         manager.addMovie(movie1);
         MovieItem[] expected = manager.findLast();
         MovieItem[] actual = new MovieItem[]{movie1};
@@ -27,7 +28,7 @@ public class PosterManagerAddMovieTest {
     }
 
     @Test
-    public void AddMovie_NewMovie_Test() {
+    public void AddMovieNewMovieTest() {
         prepareManager();
         manager.addMovie(movie3);
         MovieItem[] expected = manager.findLast();
@@ -36,7 +37,7 @@ public class PosterManagerAddMovieTest {
     }
 
     @Test
-    public void AddMovie_DoubleMovie_Test() {
+    public void AddMovieDoubleMovieTest() {
         prepareManager();
         manager.addMovie(movie3);
         manager.addMovie(movie3);

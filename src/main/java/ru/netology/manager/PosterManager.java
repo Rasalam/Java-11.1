@@ -1,7 +1,9 @@
-package ru.netology;
+package ru.netology.manager;
+
+import ru.netology.domain.MovieItem;
 
 public class PosterManager {
-    int maxLengthMovieList;
+    private int maxLengthMovieList = 10;
 
     public PosterManager(int maxLengthMovieList) {
         this.maxLengthMovieList = maxLengthMovieList;
@@ -35,10 +37,9 @@ public class PosterManager {
         return result;
     }
 
-    public MovieItem[] findAll () {
+    public MovieItem[] findAll() {
         return items;
     }
-
 
 }
 
